@@ -1,0 +1,192 @@
+Sure! Let's go through the answers to all the questions step-by-step to help you understand the basic Go program structure and how variables and types work in Go.
+
+---
+
+### **Basic Program Structure in Go**
+
+1. **What is the purpose of the `package main` statement at the beginning of a Go program?**
+
+   - **Answer**: In Go, every Go file must start with a `package` declaration. The `package main` statement indicates that this file is part of the **main package**, which is the entry point of the program. The `main` package is special because it defines the starting point of the program, the `main()` function, which is executed when the program runs. 
+
+2. **Why is the `func main()` function important in a Go program?**
+
+   - **Answer**: The `main()` function is the entry point of a Go program. It is where the program starts executing. Without the `main()` function, Go will not know where to begin execution, and the program will not run. This is the default starting point for executable programs in Go.
+
+3. **What does the `fmt.Println()` function do in Go? How does it differ from `fmt.Printf()`?**
+
+   - **Answer**: The `fmt.Println()` function prints text to the console followed by a newline. It automatically adds a line break after the output. For example:
+
+     ```go
+     fmt.Println("Hello")
+     // Output: Hello
+     // (followed by a new line)
+     ```
+
+     On the other hand, `fmt.Printf()` allows more complex formatting. It does not automatically add a newline and lets you format the output using placeholders. For example:
+
+     ```go
+     fmt.Printf("Hello, %s!", "Alice")
+     // Output: Hello, Alice!
+     ```
+
+4. **Why does Go use the `main` package and `main()` function for execution? Is this necessary for all Go programs?**
+
+   - **Answer**: Go uses the `main` package and `main()` function as the entry point for executable programs. This is a convention used for the program’s execution. While **every Go program** that is intended to be run must have the `main()` function in the `main` package, **library** packages that are meant to be imported by other programs do not need the `main` package or function. They just define reusable code.
+
+---
+
+### **Variables & Types in Go**
+
+1. **What is the difference between `var x int = 10` and `x := 10` in Go?**
+
+   - **Answer**: 
+     - `var x int = 10` is a **declared variable** where you explicitly mention the variable name (`x`), its type (`int`), and its value (`10`). This form can be used anywhere in your program, including at the package level.
+     - `x := 10` is a **short declaration** where the compiler automatically infers the type of `x` from the value (`10`). This shorthand can only be used **inside a function** and is more concise.
+
+2. **What are the basic data types in Go, and how do you declare them?**
+   - **Answer**: 
+     Go has several basic data types:
+     - `int` (integer)
+     - `string` (string of characters)
+     - `bool` (boolean values: `true` or `false`)
+     - `float32` or `float64` (floating-point numbers)
+   
+     You declare variables with explicit types as follows:
+     ```go
+     var x int = 10
+     var name string = "Alice"
+     var isValid bool = true
+     var pi float64 = 3.14
+     ```
+
+3. **What is the zero value in Go, and how does it apply to different types?**
+   - **Answer**: In Go, when a variable is declared but not initialized, it is given a **zero value**. The zero values depend on the type:
+     - `int` → `0`
+     - `string` → `""` (empty string)
+     - `bool` → `false`
+     - `float64` → `0.0`
+     Example:
+     ```go
+     var x int    // x is 0
+     var s string // s is ""
+     ```
+
+4. **How would you declare a string variable and assign a value to it in Go?**
+
+   - **Answer**: You can declare a string variable like this:
+     ```go
+     var name string = "Alice"
+     ```
+     Or use the shorthand:
+     ```go
+     name := "Alice"
+     ```
+
+5. **How does Go handle type inference when using the short variable declaration (`:=`)?**
+
+   - **Answer**: Go uses **type inference** to automatically determine the type of the variable when using the short declaration (`:=`). The type is inferred from the value on the right-hand side. For example:
+     ```go
+     x := 10      // Go infers x to be of type int
+     y := "hello" // Go infers y to be of type string
+     ```
+
+6. **What is the difference between `var x float64 = 3.14` and `x := 3.14` in terms of type declaration?**
+
+   - **Answer**:
+     - `var x float64 = 3.14` explicitly declares `x` as a `float64` and assigns it the value `3.14`.
+     - `x := 3.14` uses **type inference**. Go will automatically infer that `x` is a `float64` because `3.14` is a floating-point number.
+
+7. **Can you declare multiple variables of different types in one line in Go? If so, how?**
+   - **Answer**: Yes, you can declare multiple variables of different types in one line:
+     ```go
+     var x int = 10
+     var y string = "Go"
+     ```
+     Or, using shorthand:
+     ```go
+     x, y := 10, "Go"
+     ```
+
+8. **In Go, how do you assign the value `true` to a boolean variable? What is the default value of a boolean variable if not initialized?**
+
+   - **Answer**: You assign `true` to a boolean variable as follows:
+     ```go
+     var isActive bool = true
+     ```
+     If a boolean variable is not initialized, its **default (zero) value** is `false`.
+
+9. **What happens if you try to assign a value of one type to a variable of another incompatible type in Go?**
+   - **Answer**: Go **does not allow implicit type conversion**. If you try to assign a value of one type to a variable of another incompatible type, you will get a compile-time error. For example:
+     ```go
+     var x int = 10
+     x = "Hello" // Error: cannot use "Hello" (type string) as type int in assignment
+     ```
+
+---
+
+### **Exploring Code Example**
+
+Let’s go through the example and answer the related questions:
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    // Declaring variables with explicit types
+    var age int = 30
+    var name string = "Alice"
+    var pi float64 = 3.14159
+    var isActive bool = true
+
+    // Declaring variables with type inference (using :=)
+    score := 95
+    status := "Active"
+
+    // Printing the values
+    fmt.Println("Name:", name)
+    fmt.Println("Age:", age)
+    fmt.Println("Pi:", pi)
+    fmt.Println("Is Active:", isActive)
+    fmt.Println("Score:", score)
+    fmt.Println("Status:", status)
+}
+```
+
+1. **How would you explain the statement `var age int = 30`?**
+   - **Answer**: This statement declares a variable `age` of type `int` and initializes it with the value `30`. The `int` type is explicitly specified.
+
+2. **What is the significance of `:=` in the line `score := 95`? Can you declare a variable using this shorthand and assign it a value without specifying the type?**
+   - **Answer**: The `:=` shorthand is used for **type inference**. Go automatically determines that `score` is an `int` based on the value `95` and assigns it to the variable `score`.
+
+3. **What happens if you remove the type from the line `var name string = "Alice"` and just write `var name = "Alice"`?**
+   - **Answer**: If you remove the `string` type, Go will **infer** that the type of `name` is `string` because `"Alice"` is a string literal. So, this will still work:
+     ```go
+     var name = "Alice" // Go infers the type as string
+     ```
+
+4. **What will happen if you change the value of `age` to a string, for example `age := "30"`? Will it compile? Why or why not?**
+   - **Answer**: This will **not compile** because `age` is declared as an `int`, and `"30"` is a string. Go does not allow assigning a string to an integer variable.
+
+5. **If you remove the `isActive` variable and don't initialize it, what value will `isActive` have?**
+   - **Answer**: If `isActive` is declared but not initialized, its value will be the **zero value** for booleans, which is `false`.
+
+---
+
+### **Bonus**: Type In
+
+compatibility Example
+
+- **What happens if you try to declare a variable and give it an incorrect type? For example:**
+  ```go
+  var x int = "Hello"
+  ```
+  - **Answer**: This will result in a compile-time error, because Go does not allow assigning a string to an `int` variable. The error message will be something like:
+    ```
+    cannot use "Hello" (type string) as type int in assignment
+    ```
+
+---
+
+I hope these answers help clarify how Go handles basic program structure, variables, and types! Let me know if you have more questions or need further explanations!
